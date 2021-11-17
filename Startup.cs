@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using WorldCities.Data;
 
 namespace WorldCities
 {
@@ -25,6 +27,14 @@ namespace WorldCities
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
+            });
+
+            //Add ApplicationDbContext and SQL Server support
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")
+                );
             });
         }
 
