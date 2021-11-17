@@ -43,7 +43,15 @@ namespace WorldCities
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(
+              new StaticFileOptions()
+              {
+                  OnPrepareResponse = (context) =>
+                  {
+                      context.Context.Response.Headers["Cache-Control"] = Configuration["StaticFiles:Headers:Cache-Control"];
+                  }
+              }  
+            );
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
