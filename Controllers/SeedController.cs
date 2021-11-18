@@ -150,13 +150,9 @@ namespace WorldCities.Controllers
             return new JsonResult(new
             {
                 Cities = numberOfCitiesAdded,
-                Country = numberOfCitiesAdded
+                Country = numberOfCountriesAdded
             });
         }
 
-        public IActionResult Test()
-        {
-            return new JsonResult(new { FUCK = "YOU"});
-        }
     }
 }
