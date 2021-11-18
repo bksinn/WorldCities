@@ -38,7 +38,7 @@ namespace WorldCities.Controllers
 
             var path = Path.Combine(
                 _env.ContentRootPath,
-                "Data/Source/worldcities.xlsx");
+                "Data\\Source\\worldcities.xlsx");
 
             using var stream = System.IO.File.OpenRead(path);
             using var excelPackage = new ExcelPackage(stream);
@@ -150,7 +150,7 @@ namespace WorldCities.Controllers
             return new JsonResult(new
             {
                 Cities = numberOfCitiesAdded,
-                Country = numberOfCountriesAdded
+                Countries = numberOfCountriesAdded
             });
         }
 
