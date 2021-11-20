@@ -21,6 +21,7 @@ namespace WorldCities.Controllers
             _context = context;
         }
 
+        //api/Cities/?pageIndex=0&pageSize=10&sortColumn=name&sortOrder=asc
         // GET: api/Cities
         [HttpGet]
         public async Task<ActionResult<ApiResult<City>>> GetCities(
