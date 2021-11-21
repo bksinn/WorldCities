@@ -19,7 +19,7 @@ export class CitiesComponent implements OnInit {
   public defaultSortColumn: string = "name";
   public defaultSortOrder: string = "asc";
   defaultFilterColumn: string = "name";
-  filterQuery: any = null;
+  filterQuery: string = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -29,7 +29,7 @@ export class CitiesComponent implements OnInit {
     this.loadData();
   }
 
-  loadData(query: any = null) {
+  loadData(query: string = null) {
     console.log(query);
     var pageEvent = new PageEvent();
     pageEvent.pageIndex = this.defaultPageIndex;
