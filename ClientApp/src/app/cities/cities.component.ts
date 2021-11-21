@@ -30,12 +30,12 @@ export class CitiesComponent implements OnInit {
   }
 
   loadData(query: string = null) {
-    console.log(query);
     var pageEvent = new PageEvent();
     pageEvent.pageIndex = this.defaultPageIndex;
     pageEvent.pageSize = this.defaultPageSize;
 
     if (query) {
+      this.cities = null;
       this.filterQuery = query;
     }
 

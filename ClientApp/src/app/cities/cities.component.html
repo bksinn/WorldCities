@@ -1,9 +1,9 @@
 <h1>Cities</h1>
 <p>Here's a list of cities: feel free to play with it.</p>
-<p *ngIf="!cities"><em>Loading...</em></p>
 <mat-form-field [hidden]="!cities">
-  <input matInput placeholder="Filter by name (or part of it...)" (keyup)="loadData($any($event.target).value)" />
+  <input matInput placeholder="Filter by name (or part of it...)" (keydown.enter)="loadData($any($event.target).value)" />
 </mat-form-field>
+<p *ngIf="!cities"><em>Loading...</em></p>
 <table mat-table
        [dataSource]="cities"
        class="table-striped mat-elevation-z8"
