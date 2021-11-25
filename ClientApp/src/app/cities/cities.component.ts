@@ -56,8 +56,6 @@ export class CitiesComponent implements OnInit {
         .set("filterQuery", this.filterQuery);
     }
 
-    console.log((this.sort) ? this.sort.direction : this.defaultSortOrder);
-
     this.http.get<any>(url, { params }).subscribe(
       result => {
         this.paginator.length = result.totalCount;
