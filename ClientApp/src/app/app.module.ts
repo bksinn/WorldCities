@@ -11,6 +11,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { CountriesComponent } from './countries/countries.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CityEditComponent } from './cities/city-edit/city-edit.component';
+import { CountryEditComponent } from './countries/country-edit/country-edit.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CityEditComponent } from './cities/city-edit/city-edit.component';
     NavMenuComponent,
     CitiesComponent,
     CountriesComponent,
-    CityEditComponent
+    CityEditComponent,
+    CountryEditComponent
   ],
   imports: [
     BrowserModule,

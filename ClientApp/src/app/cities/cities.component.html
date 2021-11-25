@@ -7,7 +7,7 @@
 <br/>
 <br/>
 <mat-form-field>
-  <input matInput placeholder="Filter by name (or part of it...)" (keydown.enter)="loadData($any($event.target).value)" />
+  <input matInput placeholder="Filter by name (or part of it...)" (keyup)="onFilterTextChanged($any($event.target).value)" />
 </mat-form-field>
 <p *ngIf="!cities"><em>Loading...</em></p>
 <table mat-table
