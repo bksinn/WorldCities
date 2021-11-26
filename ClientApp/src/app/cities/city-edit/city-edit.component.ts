@@ -4,6 +4,7 @@ import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, Validators }
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
+import { BaseFormComponent } from '../../base.form.component';
 import { Country } from '../../countries/country';
 import { City } from '../cities';
 
@@ -12,7 +13,7 @@ import { City } from '../cities';
   templateUrl: './city-edit.component.html',
   styleUrls: ['./city-edit.component.less']
 })
-export class CityEditComponent implements OnInit {
+export class CityEditComponent extends BaseFormComponent implements OnInit {
   //the view title
   title: string;
 
@@ -34,13 +35,15 @@ export class CityEditComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
-      lat: new FormControl('', Validators.required),
-      lon: new FormControl('', Validators.required),
+      lat: new FormControl('', [Validators.required, Validators.pattern(/^[-]?[0-9]+(\.[0-9]{1,4}?$)/)]),
+      lon: new FormControl('', [Validators.required, Validators.pattern(/^[-]?[0-9]+(\.[0-9]{1,4}?$)/)]),
       countryId: new FormControl('', Validators.required)
     }, null, this.isDupeCity());
 
@@ -147,5 +150,4 @@ export class CityEditComponent implements OnInit {
     }
     
   }
-
 }

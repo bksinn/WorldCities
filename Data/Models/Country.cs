@@ -43,7 +43,23 @@ namespace WorldCities.Data.Models
         ///<summary>
         ///A list containing all the cities related to this country
         /// </summary>
+        //[JsonIgnore]//For demo purposes
         public virtual List<City> Cities { get; set; }
         #endregion
+        //#region Clien-side properies (Demo)
+        /////<summary>
+        /////The number of cities related to this country
+        ///// </summary>
+        //[NotMapped]
+        //public int TotCities
+        //{
+        //    get
+        //    {
+        //        return (Cities != null) ? Cities.Count : _TotCities;
+        //    }
+        //    set { _TotCities = value; }
+        //}
+        //private int _TotCities = 0;
+        //#endregion
     }
 }

@@ -7,7 +7,7 @@
       <label for="name">Country name:</label>
       <br />
       <input class="form-control" type="text" id="name" formControlName="name" required placeholder="Country name..." />
-      <div class="invalid-feedback" *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)">
+      <div class="invalid-feedback" *ngIf="hasError('name')">
         <div *ngIf="form.get('name').errors?.required">
           Name is required
         </div>
@@ -21,7 +21,7 @@
       <label for="iso2">ISO 3166-1 ALPHA-2 Country Code (2 letters)</label>
       <br />
       <input class="form-control" type="text" id="iso2" formControlName="iso2" required placeholder="2 letter country code..." />
-      <div class="invalid-feedback" *ngIf="form.get('iso2').invalid && (form.get('iso2').dirty || form.get('iso2').touched)">
+      <div class="invalid-feedback" *ngIf="hasError('iso2')">
         <div *ngIf="form.get('iso2').errors?.required">
           ISO 3166-1 ALPHA-2 Country Code is required
         </div>
@@ -38,7 +38,7 @@
       <label for="iso3">ISO 3166-1 ALPHA-3 Country Code (3 letters)</label>
       <br />
       <input class="form-control" type="text" id="iso3" formControlName="iso3" required placeholder="3 letter country code..." />
-      <div class="invalid-feedback" *ngIf="form.get('iso3').invalid && (form.get('iso3').dirty || form.get('iso3').touched)">
+      <div class="invalid-feedback" *ngIf="hasError('iso3')">
         <div *ngIf="form.get('iso3').errors?.required">
           ISO 3166-1 ALPHA-3 Country Code is required
         </div>

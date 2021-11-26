@@ -2,9 +2,8 @@
 <p>Here's a list of cities: feel free to play with it.</p>
 
 <div class="commands text-right">
-  <button type="submit" [routerLink]="['/city']" class="btn btn-success">Add a new City</button>
+  <button type="submit" [routerLink]="['/city']" class="btn btn-success text-right">Add a new City</button>
 </div>
-<br/>
 <br/>
 <mat-form-field>
   <input matInput placeholder="Filter by name (or part of it...)" (keyup)="onFilterTextChanged($any($event.target).value)" />
@@ -37,6 +36,14 @@
   <ng-container matColumnDef="lon">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Lon</th>
     <td mat-cell *matCellDef="let city">{{city.lon}}</td>
+  </ng-container>
+  <ng-container matColumnDef="countryName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
+    <td mat-cell *matCellDef="let city">
+      <a [routerLink]="['/country', city.countryId]">
+        {{city.countryName}}
+      </a>
+    </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
