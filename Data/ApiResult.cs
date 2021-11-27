@@ -81,6 +81,14 @@ namespace WorldCities.Data
                 .Skip(pageIndex * pageSize)
                 .Take(pageSize);
 
+            //retrieve the SQL query (for debug purposes)
+#if DEBUG 
+            {
+                var sql = source.ToParametrizedSql();
+                //do something with the sql string
+            }
+#endif
+
             var data = await source.ToListAsync();
 
             return new ApiResult<T>(
