@@ -5,9 +5,9 @@ import { MatSort } from '@angular/material/sort';
 
 import { Country } from './country';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Subject } from 'rxjs/internal/Subject';
 import { CountryService } from './country.service';
 import { ApiResult } from '../base.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-countries',

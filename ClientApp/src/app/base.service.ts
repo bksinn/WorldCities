@@ -4,8 +4,7 @@ import { Observable } from "rxjs/internal/Observable";
 export abstract class BaseService {
   constructor(
     protected http: HttpClient,
-    protected baseUrl: string
-  ) { }
+    protected baseUrl: string) { }
 
   abstract getData<ApiResult>(
     pageIndex: number,
