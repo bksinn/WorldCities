@@ -1,15 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IdentityServer4.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using WorldCities.Data.Models;
 
 namespace WorldCities.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base()
-        {
-
-        }
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(
+            DbContextOptions options,
+            IOptions<OperationalStoreOptions> operationalStoreOptions
+        ) : base(options, operationalStoreOptions)
         {
 
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IdentityServer4.EntityFramework.Options;
+using Microsoft.EntityFrameworkCore;
 using WorldCities.Controllers;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using WorldCities.Data;
 using WorldCities.Data.Models;
 using Xunit;
+using Microsoft.Extensions.Options;
 
 namespace WorldCities.Tests
 {
@@ -24,8 +26,9 @@ namespace WorldCities.Tests
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "WorldCities")
                 .Options;
+            var storeOptions = Options.Create(new OperationalStoreOptions());
 
-            using (var context = new ApplicationDbContext(options))
+            using (var context = new ApplicationDbContext(options, storeOptions))
             {
                 context.Add(new City()
                 {
@@ -43,7 +46,7 @@ namespace WorldCities.Tests
             #endregion
             #region Act
             //todo: invoke the test
-            using (var context = new ApplicationDbContext(options))
+            using (var context = new ApplicationDbContext(options, storeOptions))
             {
                 var controller = new CitiesController(context);
                 city_existing = (await controller.GetCity(1)).Value;

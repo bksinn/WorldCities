@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -12,6 +12,8 @@ import { CountriesComponent } from './countries/countries.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CityEditComponent } from './cities/city-edit/city-edit.component';
 import { CountryEditComponent } from './countries/country-edit/country-edit.component';
+import { ApiAuthorizationModule } from '../api-authorization/api-authorization.module';
+import { AuthorizeInterceptor } from '../api-authorization/authorize.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { CountryEditComponent } from './countries/country-edit/country-edit.comp
   ],
   imports: [
     BrowserModule,
+    ApiAuthorizationModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -32,7 +35,8 @@ import { CountryEditComponent } from './countries/country-edit/country-edit.comp
     ReactiveFormsModule
   ],
   providers: [
-    HttpClientModule
+    HttpClientModule,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
