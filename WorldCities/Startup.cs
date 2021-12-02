@@ -37,7 +37,7 @@ namespace WorldCities
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/dist/worldcities";
             });
 
             //Add ApplicationDbContext and SQL Server support
@@ -110,10 +110,21 @@ namespace WorldCities
               {
                   OnPrepareResponse = (context) =>
                   {
-                      context.Context.Response.Headers["Cache-Control"] = Configuration["StaticFiles:Headers:Cache-Control"];
+                      if (context.File.Name == "isOnline.txt")
+                      {
+                          //disable caching for these files
+                          context.Context.Response.Headers.Add("Cache-Control", "no-cache, no-store");
+                          context.Context.Response.Headers.Add("Expires", "-1");
+                      }
+                      else
+                      {
+                          //Retrieve cache configuration from appsettings.json
+                          context.Context.Response.Headers["Cache-Control"] = Configuration["StaticFiles:Headers:Cache-Control"];
+                      }
                   }
               }  
             );
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
